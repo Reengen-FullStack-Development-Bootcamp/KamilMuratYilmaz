@@ -1,2 +1,2 @@
 # KamilMuratYilmaz
-Kamil Murat Yilmaz
+Odev Sayfama Hosgeldin
