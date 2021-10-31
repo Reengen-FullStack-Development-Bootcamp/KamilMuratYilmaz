@@ -1,0 +1,43 @@
+{
+    "hotels":[
+        {
+            "id":1,
+            "name": "Divan Hotel",
+            "price": 80,
+            "image":"divan.webp",
+            "city": "İstanbul",
+            "address":"Büyükdere Cad. No: 84, İstanbul, 34378, İstanbul, Türkiye",
+            "assestment":"4"
+        },
+
+        {
+            "id":2,
+            "name": "DoubleTree by Hilton Bodrum Marina Vista",
+            "price": 78,
+            "image":"doubleTree.webp",
+            "city": "Muğla",
+            "address":"Neyzen Tevfik Cad. No.: 168, Bodrum, 48400, Muğla, Türkiye",
+            "assestment":"4"
+        },
+
+        {
+            "id":3,
+            "name": "Radisson Blu Resort & Spa, Cesme",
+            "price": 68,
+            "image":"radisson.webp",
+            "city": "İzmir",
+            "address":"Altınyunus Mah. 3435 Sk. No: 25, Çeşme, 35930, İzmir, Türkiye",
+            "assestment":"5"
+        },
+
+        {
+            "id":4,
+            "name": "The Corner Park Hotel",
+            "price": 57,
+            "image":"cornerPark.webp",
+            "city": "Antalya",
+            "address":"Arapsuyu Mahallesi, Akdeniz Bulvarı, Konyaaltı, 0707, Antalya, Türkiye",
+            "assestment":"3"
+        }
+    ]
+}
