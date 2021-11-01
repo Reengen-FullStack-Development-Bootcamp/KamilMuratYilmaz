@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div id= "CustomerForm">
+    <!-- Form Group | Start -->
     <b-form-group
       ref = "validateForm"
       style="
@@ -71,19 +72,23 @@
             :state ="$v.tel.$error ? false : null"
         />
       </b-col>
+
+      <!-- If all inputs are valid ? show-text:Customer Applied : show-text: disable-->
       <div id="validation-alert"
        v-show="!$v.$invalid" 
        class="valid-sign">
        Customer Applied </div>
 
+       <!-- If all inputs are valid ? button:enable : button: disable-->
        <b-button
         @click="validCustomers"
         ref= "validButton"
         class="register-button"
         :disabled= "$v.$invalid">
-        Click</b-button>
+        Apply</b-button>
         
       </b-form-group>
+      <!-- Form Group | End -->
   </div>
 </template>
 
@@ -101,6 +106,7 @@ data(){
 },
 
 methods:{
+  // $emit how many customer forms are valid | Change style per clicked button
 validCustomers() {
   this.validCount++
   this.$refs.validButton.style.background  ="black"

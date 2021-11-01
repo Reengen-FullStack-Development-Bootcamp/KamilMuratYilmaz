@@ -1,10 +1,11 @@
 <template>
-  <div>
+  <div id= "reservation">
     <h4 style="background-color:#232b2b; color:#faf6e9"> {{customerCount}} Customer | {{dayStayed}} Days |  ${{totalPrice}} Total Price </h4>
     <b-col>
-    <div class="d-flex">
+    <div class="customer-form">
         <CustomerForm  @validCustomers="validCounted($event)" v-for="(customer) in customerCount" :key="customer" />
     </div>
+    <!-- If all validated forms equals to customers show payment modal -->
         <PaymentModal v-if="validCustomers == customerCount" />
     </b-col>
   </div>
@@ -28,25 +29,32 @@ export default {
   },
 
   methods:{
+    // Get validated customer count from $emit and return all forms that validated
     validCounted(e) {
       if(e)
       this.validCustomers ++
       return this.validCustomers
     },
-
-    goPayment() {
-      console.log(this.validCustomers);
-    }
   }
 }
 </script>
 
 <style>
+  .customer-form{
+    display: flex;
+  }
+
 .payment-button{
   background-color: green;
   border: none;
   border-radius: 10px;
   width: 50%;
+}
+
+@media only screen and (max-width: 768px) {
+  .customer-form {
+    display: inline-block;
+  }
 }
 
 </style>

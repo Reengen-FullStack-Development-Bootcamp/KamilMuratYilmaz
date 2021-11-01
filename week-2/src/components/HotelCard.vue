@@ -1,5 +1,6 @@
 <template>
   <div id = "hotelCard">
+    <!-- Hotel Card Container | Start -->
     <b-container>
         <b-row class="d-flex justify-content-around">
           <b-card 
@@ -13,19 +14,21 @@
           <div class ="bottom-side">
           <b-form-rating no-border v-model="hotel.assestment" 
                   readonly color="black" class="stars"></b-form-rating>
-            <b-col class="d-inline">
-              <strong style="font-size: large"> <i class="fas fa-map-marker-alt"></i> {{hotel.city}}</strong>
-              <strong style="margin-left: 30px;"> Price:${{hotel.price}} </strong>
+            <b-col class="info">
+              <strong class="s1"> <i class="fas fa-map-marker-alt"></i> {{hotel.city}}</strong>
+              <strong class="s2"> Price:${{hotel.price}} </strong>
               <b-button class="button" @click="goHotelPage(hotel.id)">&rsaquo;</b-button>
             </b-col>
           </div>
         </b-card>
       </b-row>
    </b-container>   
+   <!-- Hotel Card Container | End -->
   </div>
 </template>
 
 <script>
+// Data comes from Json
 import hotelData from "@/hotelData.json"
 export default {
 name: "HotelCard",
@@ -44,6 +47,10 @@ name: "HotelCard",
 </script>
 
 <style>
+
+.info{
+  display: inline-block;
+}
 
 .bottom-side{
   display: flex;
@@ -65,6 +72,14 @@ name: "HotelCard",
   border-top-right-radius: calc(9.25rem - 1px);
   border-bottom-left-radius: calc(9.25rem - 1px);
   border-bottom-right-radius: calc(9.25rem - 1px);
+}
+
+@media only screen and (max-width: 768px) {
+.info{
+  display: flex;
+  flex-direction: column;
+}
+
 }
 
 

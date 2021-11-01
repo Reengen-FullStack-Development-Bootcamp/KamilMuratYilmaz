@@ -1,5 +1,5 @@
 import { required, minLength, minValue, email } from 'vuelidate/lib/validators'
-
+// Turkish ID Check
 const idCheck = (id) => {
   if(!id) return false;
   id = Array.from(id).map(id=>Number(id)); // id changed to Number with a new array
@@ -20,7 +20,7 @@ const idCheck = (id) => {
     ) return true;
   else return false;
 }
-
+// Hes Code Validation
 const hesCode = (hes) => {
   let code =  /^[A-Z0-9]{4}-[A-Z0-9]{4}-[0-9]{2}$/g;
   if (

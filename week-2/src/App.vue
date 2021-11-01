@@ -30,6 +30,16 @@ export default {
   components: {
   },
 
+  data(){
+  return {
+    mobile:window.innerWidth <= 700
+  }
+},
+created(){
+  addEventListener('resize', () => {
+    this.mobile = innerWidth <= 700
+  })
+},
   watch:{
     $route(to,from){
       console.log(to, from)
@@ -59,4 +69,7 @@ export default {
   color: #ece8d9;
   font-size: 40px;
 }
+
+
+
 </style>

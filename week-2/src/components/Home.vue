@@ -12,7 +12,6 @@
 export default {
   name: 'Home',
   components: {
-    
   },
 
 }
@@ -40,6 +39,12 @@ export default {
   color: #ece8d9;
   font-size: 40px;
 }
+@media only screen and (max-width: 768px) {
+.router-link{
+  font-size: 20px;
+}
 
+
+}
 
 </style>
