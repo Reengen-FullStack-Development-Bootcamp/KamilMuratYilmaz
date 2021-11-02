@@ -17,7 +17,7 @@
             <b-col class="info">
               <strong class="s1"> <i class="fas fa-map-marker-alt"></i> {{hotel.city}}</strong>
               <strong class="s2"> Price:${{hotel.price}} </strong>
-              <b-button class="button" @click="goHotelPage(hotel.id)">&rsaquo;</b-button>
+              <b-button class="goHotelPage" @click="goHotelPage(hotel.id)">&rsaquo;</b-button>
             </b-col>
           </div>
         </b-card>
@@ -74,14 +74,25 @@ name: "HotelCard",
   border-bottom-right-radius: calc(9.25rem - 1px);
 }
 
-@media only screen and (max-width: 768px) {
-.info{
-  display: flex;
-  flex-direction: column;
+.goHotelPage{
+  background-color: #494949;
+  color: whitesmoke;
+  border: none;
+  border-radius: 20px;
+  margin-left: 30%;
+  width: 10rem;
+}
+
+@media screen 
+  and (max-width: 375px) 
+  and (max-height: 812px)  {
+
+.goHotelPage{
+  
+  margin-left: 65px;
 }
 
 }
-
 
 
 </style>

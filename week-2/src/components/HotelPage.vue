@@ -163,10 +163,9 @@ computed: {
 
 .bottom-side{
   display: flex;
-  
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   
 }
 
@@ -210,10 +209,18 @@ computed: {
   margin-left: 30px;
 }
 
-@media only screen and (max-width: 768px) {
+.form-control.is-valid {
+  padding-right: 10px !important;
+}
+
+@media screen 
+  and (max-width: 375px) 
+  and (max-height: 812px)  {
+
 .info{
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 .s1{
   margin-left: 0px;
@@ -221,9 +228,17 @@ computed: {
 .s2{
   margin-left: 5px;
 }
-.button{
-  margin-left: 49px;
+.button {
+  margin-left: 10px !important;
 }
+.img-size{
+  max-width: 100%;
 }
 
+.form-control.is-valid {
+  padding-right: 10px !important;
+}
+
+
+}
 </style>

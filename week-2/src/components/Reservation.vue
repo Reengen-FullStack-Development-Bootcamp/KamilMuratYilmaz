@@ -51,7 +51,10 @@ export default {
   width: 50%;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen 
+  and (max-width: 375px) 
+  and (max-height: 812px) {
+    
   .customer-form {
     display: inline-block;
   }

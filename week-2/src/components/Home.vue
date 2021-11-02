@@ -39,12 +39,21 @@ export default {
   color: #ece8d9;
   font-size: 40px;
 }
-@media only screen and (max-width: 768px) {
+@media only screen
+and (max-width: 375px) 
+and (max-height: 812px) {
+  
 .router-link{
   font-size: 20px;
 }
 
-
+.h1, h1{
+  margin-top: 200px !important;
 }
 
+.h2, h2{
+margin-top: 40px !important;
+}
+
+}
 </style>
