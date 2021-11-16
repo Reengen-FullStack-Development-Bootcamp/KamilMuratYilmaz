@@ -1,6 +1,5 @@
 <template>
   <v-container>
-    <h3>{{ sendQuery }}</h3>
     <v-btn @click="btnClick">Click</v-btn>
     <div ref="chart" class="chart"></div>
   </v-container>
@@ -15,34 +14,26 @@ export default {
     return {};
   },
   computed: {
-    ...mapState(["marketData"]),
-    ...mapState(["timeSeries"]),
+    ...mapState([
+      "marketData",
+      "timeSeries",
+      "timeSeriesTypeData",
+      "companySymbol",
+    ]),
     sendQuery() {
       return this.$route.query.view;
     },
     sendId() {
       return this.$route.params.id;
     },
-    formattedStockData() {
-      let dataArray = this.marketData.map((item) => {
-        return {
-          Date: Object.keys(item),
-          Open: item[Object.keys(item)].open,
-          High: item[Object.keys(item)].high,
-          Low: item[Object.keys(item)].low,
-          Close: item[Object.keys(item)].close,
-          Volume: item[Object.keys(item)].volume,
-        };
-      });
-      return dataArray;
-    },
   },
   methods: {
-    ...mapActions(["timeSeriesType"]),
-    ...mapActions(["companySymbolFromID"]),
-    ...mapActions(["getTimeSeriesData"]),
-    ...mapMutations(["SET_MARKET_DATA"]),
-    ...mapMutations(["SET_TIME_SERIES"]),
+    ...mapActions([
+      "timeSeriesType",
+      "companySymbolFromID",
+      "getTimeSeriesData",
+    ]),
+    ...mapMutations(["SET_MARKET_DATA", "SET_TIME_SERIES"]),
     btnClick() {
       this.getTimeSeriesData();
     },
@@ -60,8 +51,8 @@ export default {
           break;
       }
       console.log(this.timeSeries);
-      console.log(this.$store.state.timeSeriesTypeData);
-      console.log(this.$store.state.companySymbol);
+      console.log(this.timeSeriesTypeData);
+      console.log(this.companySymbol);
     },
     CandlestickChart(
       data,
@@ -89,7 +80,7 @@ export default {
         yFormat = "~f", // a format specifier for the value on the y-axis
         yLabel, // a label for the y-axis
         stroke = "currentColor", // stroke color for the daily rule
-        strokeLinecap = "round", // stroke line cap for the rules
+        strokeLinecap = "square", // stroke line cap for the rules
         colors = ["#4daf4a", "#999999", "#e41a1c"], // [up, no change, down]
       } = {}
     ) {
@@ -192,20 +183,17 @@ High: ${formatValue(Yh[i])}`;
         .attr("stroke", (i) => colors[1 + Math.sign(Yo[i] - Yc[i])]);
       if (title) g.append("title").text(title);
     },
-    //Invoking the CanclestickChart function with the computed formattedStockData to create the chart and add it to DOM
+    //Invoking the CanclestickChart function with the computed marketData to create the chart and add it to DOM
     makeChart() {
       this.CandlestickChart(this.marketData, {
-        date: this.date,
-        high: this.high,
-        low: this.low,
-        open: this.open,
-        close: this.close,
-        volume: this.volume,
-        xDomain: this.marketData
-          .map((item) => new Date(Object.keys(item)))
-          .reverse(),
+        date: (d) => new Date(d.date),
+        high: (d) => d.high,
+        low: (d) => d.low,
+        open: (d) => d.open,
+        close: (d) => d.close,
+        xDomain: this.marketData.map((item) => new Date(item.date)).reverse(),
         xTicks: this.marketData
-          .map((item) => new Date(Object.keys(item)))
+          .map((item) => new Date(item.date))
           .filter((item, index) => {
             if (index % 7 === 0) return item;
           }),
@@ -222,9 +210,9 @@ High: ${formatValue(Yh[i])}`;
   watch: {
     sendQuery() {
       this.checkTimeSeriesFromQuery();
+      this.getTimeSeriesData();
     },
     marketData() {
-      console.log(this.marketData);
       while (this.$refs.chart.firstChild) {
         this.$refs.chart.firstChild.remove();
       }
@@ -233,40 +221,17 @@ High: ${formatValue(Yh[i])}`;
   },
   mounted() {
     //Invoking the makeChart function when the component mounts
+    this.checkTimeSeriesFromQuery();
+    this.getTimeSeriesData();
     this.makeChart();
   },
 };
 </script>
 <style scoped>
-.chart-container {
+.chart {
   position: relative;
   padding: 30px;
   border-radius: 10px;
   background-color: white;
-}
-.options {
-  position: absolute;
-  top: 20px;
-  left: 35%;
-  width: 550px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border: 1px solid grey;
-  border-radius: 20px;
-  padding: 10px 20px;
-}
-.option-label {
-  width: 60px;
-  text-align: center;
-}
-input {
-  display: none;
-}
-input:checked + label {
-  font-weight: bold;
-}
-label {
-  cursor: pointer;
 }
 </style>

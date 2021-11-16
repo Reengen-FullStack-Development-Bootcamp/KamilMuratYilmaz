@@ -77,7 +77,12 @@ export default new Vuex.Store({
           commit("SET_MARKET_SEARCH_RESULT", companyNameSymbol.slice(0, 5));
           console.log(state.searchResults);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.error(err);
+          alert(
+            "You have reached API request limit, please try again after 1 minute"
+          );
+        });
     },
     getTimeSeriesData({ state, commit }) {
       commit("SET_MARKET_DATA", []);
@@ -110,6 +115,9 @@ export default new Vuex.Store({
         })
         .catch((err) => {
           console.error(err);
+          alert(
+            "You have reached API request limit, please try again after 1 minute"
+          );
         });
     },
     companySymbolFromID({ commit }, id) {

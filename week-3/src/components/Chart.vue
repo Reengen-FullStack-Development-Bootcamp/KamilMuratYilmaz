@@ -1,6 +1,10 @@
 <template>
   <v-card elevation="2">
-    <v-card-text class="center">
+    <v-card-title class="justify-center">
+      {{ this.$store.state.companySymbol }} -
+      {{ this.$store.state.companyKeyword }}
+    </v-card-title>
+    <v-card-actions class="justify-center">
       <v-chip-group
         v-model="selection"
         active-class="deep-purple accent-4 white--text"
@@ -12,7 +16,7 @@
 
         <v-chip>Monthly</v-chip>
       </v-chip-group>
-    </v-card-text>
+    </v-card-actions>
     <CandleStickGraph />
   </v-card>
 </template>

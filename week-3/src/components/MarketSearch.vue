@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-card color="orange lighten" dark>
-      <v-card-title class="text-h5 orange lighten-3">
+      <v-card-title class="text-h5 orange lighten-3 justify-center">
         Search for Exchange Market
       </v-card-title>
       <v-card-text>
@@ -75,8 +75,7 @@ export default {
         };
       });
     },
-    ...mapState(["searchResults"]),
-    ...mapState(["companyKeyword"]),
+    ...mapState(["searchResults", "companyKeyword"]),
   },
   methods: {
     ...mapActions(["getCompanySearchResult"]),
